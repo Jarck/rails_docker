@@ -1,0 +1,8 @@
+<p><%= I18n.t("mail.welcome_to", app_name: Setting.app_name) %></p>
+<p>
+  <label>你好 <%= @user.name %>,</label><br />
+  <%= I18n.t("mail.you_have_successfully") %> <a href="<%= root_url %>"><%= Setting.app_name %></a> <%= t("mail.registered_an_account") %>
+</p>
+<p>
+  <label><%= I18n.t("mail.login_from") %>: </label><a href='<%= new_user_session_url %>'><%= new_user_session_url %></a>.
+</p>

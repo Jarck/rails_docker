@@ -1,0 +1,23 @@
+defaults: &defaults
+  app_name: 'Rails 360'
+
+  # 域名、端口
+  domain: 'localhost'
+  port: 3000
+
+  # 发送邮箱设置
+  email_form: 'Your name <info@you_site.com>'
+  email_address: 'smtp.mxhichina.com'
+  email_port: 587
+  email_domain: 'qiye.aliyun.com/alimail'
+  email_sender: 'email'
+  email_password: 'email_password'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

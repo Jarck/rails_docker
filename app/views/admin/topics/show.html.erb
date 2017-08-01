@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-11">
+    <div class="topic-detail panel panel-default">
+      <div class="panel-heading">
+        <%= render partial: "admin/topics/topic_info", locals: { topic: @topic } %>
+      </div>
+      <div class="panel-body markdown">
+        <article>
+          <%= raw @topic.body_html %>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

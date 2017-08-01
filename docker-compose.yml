@@ -1,0 +1,27 @@
+version: '2'
+services:
+  web:
+    image: jarck/rails:5.1.2
+    restart: always
+    ports:
+    - '80'
+    - '22'
+    volumes:
+    - /home/docker/data/rails360/config/database.yml:/rails_app/config/database.yml
+    - /home/docker/data/rails360/config/redis.yml:/rails_app/config/redis.yml
+    - /home/docker/data/rails360/config/secrets.yml:/rails_app/config/secrets.yml
+    - /home/docker/data/rails360/config/sidekiq.yml:/rails_app/config/sidekiq.yml
+    - /home/docker/data/rails360/log:/rails_app/log
+    - /home/docker/data/rails360/public/uploads:/rails_app/public/uploads
+    environment:
+    - REDIS_HOST=redis
+    - VIRTUAL_HOST=b.skio.cn
+    - SECRET_KEY_BASE=eba77ab911c99c725ec3674b2677bb7c5947644c440acdd77e6a88445fc2d456fd69f1d89aa4ebfbb8b78faad97af84a77e0edfccc3b8d2ee46c1dcbb02aaded
+  sidekiq:
+    command: bundle exec sidekiq
+  redis:
+    image: redis:3.2
+  db:
+    image: mysql:5.7
+    volumes:
+      - /homes/docker/data/mysql:/var/lib/mysql

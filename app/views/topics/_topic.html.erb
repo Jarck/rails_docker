@@ -1,0 +1,14 @@
+<div class="topic media topic-<%= topic.id %>">
+  <div class="infos media-body">
+    <div class="title media-heading">
+      <div class="row">
+        <div class="col-md-10">
+          <p>
+            <span class="node"><%= topic.node.title %></span>
+            <%= link_to(truncate(topic.title, length: 100), topic_path(topic), title: topic.title, :target=> "_blank") %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

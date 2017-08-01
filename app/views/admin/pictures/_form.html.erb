@@ -1,0 +1,11 @@
+<%= simple_form_for [:admin, @picture], html: { class: "form" } do |f| %>
+  <%= render "common/error_messages", target: @picture %>
+
+  <div class="form-group">
+    <%= f.file_field :image, multiple: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit t("common.save"), class: "btn btn-primary col-xs-2", 'data-disable-with' => t("common.saving") %>
+  </div>
+<% end %>

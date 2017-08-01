@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-5 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>修改我的密码</strong>
+      </div>
+      <div class="panel-body">
+
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+          <%= f.hidden_field :reset_password_token %>
+
+          <div class="form-group">
+            <%= f.label :password, "新密码" %><br />
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+            <% end %>
+            <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password_confirmation, "确认密码" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+          </div>
+
+          <div class="actions form-group">
+              <%= f.submit "修改我的密码", class: "btn btn-primary btn-block", :data => { "disable-with" => "请稍等..." } %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links", class: "btn btn-primary", 'data-disable-with' => t("common.submitting") %>
+      </div>
+    </div>
+  </div>
+</div>

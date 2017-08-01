@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong><%= t('.title', name: @application.name) %></strong>
+    <%= link_to '应用列表', oauth_applications_path, class: 'btn btn-link pull-right' %>
+  </div>
+
+  <div class="panel-body">
+    <table class="table table-striped">
+      <tr>
+        <td><%= t('.application_id') %>:</td>
+        <td><code id="application_id"><%= @application.uid %></code></td>
+      </tr>
+
+      <tr>
+        <td><%= t('.secret') %>:</td>
+        <td><code id="secret"><%= @application.secret %></code></td>
+      </tr>
+
+      <!-- <tr>
+        <td><%#= t('.scopes') %>:</td>
+        <td><code id="scopes"><%#= @application.scopes %></code></td>
+      </tr> -->
+
+      <tr>
+        <td><%= t('.callback_urls') %>:</td>
+
+        <td>
+          <table>
+            <% @application.redirect_uri.split.each do |uri| %>
+              <tr>
+                <td>
+                  <code><%= uri %></code>
+                </td>
+                <td>
+                  <%= link_to t('doorkeeper.applications.buttons.authorize'), oauth_authorization_path(client_id: @application.uid, redirect_uri: uri, response_type: 'code', scope: @application.scopes), class: 'btn btn-success', target: '_blank' %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="panel-footer">
+    <%= link_to t('doorkeeper.applications.buttons.edit'), edit_oauth_application_path(@application), class: 'btn btn-primary pull-left', style: 'margin-right:20px;' %>
+    <%= render 'delete_form', application: @application, submit_btn_css: 'btn btn-danger' %>
+  </div>
+</div>

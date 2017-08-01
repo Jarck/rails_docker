@@ -1,0 +1,9 @@
+# Options here can still be overridden by cmd line args.
+#   sidekiq -C config/sidekiq.yml
+---
+:concurrency: 20
+:pidfile: tmp/pids/sidekiq.pid
+:logfile: log/sidekiq.log
+:queues:
+  - [mailers, 5]
+  - default

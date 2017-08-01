@@ -1,0 +1,16 @@
+<div clas="panel-heading media clearfix"> 
+  <div class="media-body">
+    <h1 class="media-title"><%= topic.title %></h1>
+    <div class="info">
+      <%= topic.user.name %>
+      ·
+      <%= raw I18n.t("common.created_at", time: timeago(topic.created_at) )%>
+      ·
+      <%= topic.hits %> <%= I18n.t("common.read_times") %>
+
+      <% if can? :edit, topic %>
+        <%= link_to(I18n.t("common.editor_toolbar_edit"), edit_admin_topic_path(@topic)) %>
+      <% end %>
+     </div>
+  </div>
+</div>

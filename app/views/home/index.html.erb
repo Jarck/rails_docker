@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="text-center text-primary">
+            <span><%= I18n.t("common.tip") %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= I18n.t("common.last_created") %>
+      </div>
+      <div class="panel-body">
+        <% @last_created_topics.each do |topic| %>
+          <p>
+            <span><%= link_to topic.title, topic_path(topic) %></span>
+            <span class="right"><%= raw I18n.t("common.created_at", time: timeago(topic.created_at) )%></span>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= I18n.t("common.last_updated") %>
+      </div>
+      <div class="panel-body">
+        <% @last_created_topics.each do |topic| %>
+          <p>
+            <span><%= link_to topic.title, topic_path(topic) %></span>
+            <span class="right"><%= raw I18n.t("common.updated_at", time: timeago(topic.updated_at) )%></span>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

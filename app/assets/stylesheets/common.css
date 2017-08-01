@@ -1,0 +1,45 @@
+body {
+  background: #E7EAEC;
+  color: #222527;
+  font-family: "RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+abbr[title] {
+  border-bottom: 0px !important;
+  cursor: pointer !important;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.pagination {
+  margin: 0;
+}
+
+.topics .topic {
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.select_node {
+    float: left;
+    width: 200px;
+    margin-right: 10px;
+}
+
+.topic_title {
+    width: 880px;
+}
+
+.node {
+    color: #777;
+    margin-right: 3px;
+}
+
+.create_bar {
+  float: right;
+}
