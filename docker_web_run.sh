@@ -19,6 +19,9 @@ if [ "$RUN_CONTEXT" = "dev" ]; then
     /etc/init.d/cron start
     #执行rake任务
     bundle exec rake db:migrate
+
+    nohup /bin/bash -c "bundle exec sidekiq -e production -C config/sidekiq.yml" &
+
     #启动rails
     #echo `bundle exec rails s -b 0.0.0.0 -p 3000`
     passenger start --environment development --port 3000
@@ -32,6 +35,8 @@ elif [ "$RUN_CONTEXT" = "prod" ]; then
     RAILS_ENV=production bundle exec rake assets:precompile
     #执行db:migrate
     RAILS_ENV=production bundle exec rake db:migrate
+
+    nohup /bin/bash -c "bundle exec sidekiq -e production -C config/sidekiq.yml" &
 
     #启动rails
     passenger start
