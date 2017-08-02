@@ -1,7 +1,7 @@
 version: '2'
 services:
   web:
-    image: jarck/rails:5.1.2
+    image: jarck/rails:v1_onbuild
     restart: always
     ports:
     - '80'

@@ -1,3 +1,3 @@
-FROM jarck/rails:5.1.2
+FROM jarck/rails:v1_onbuild
 
 CMD /bin/bash docker_web_run.sh
