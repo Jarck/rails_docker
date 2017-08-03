@@ -8,16 +8,16 @@ web:
   - '80'
   - '22'
   volumes:
-  - /home/docker/data/rails360/config/database.yml:/rails_app/config/database.yml
-  - /home/docker/data/rails360/config/secrets.yml:/rails_app/config/secrets.yml
-  - /home/docker/data/rails360/log:/rails_app/log
-  - /home/docker/data/rails360/public/uploads:/rails_app/public/uploads/
-  - /home/docker/data/rails360/config/config.yml:/rails_app/config/config.yml
+  - local_path/config/database.yml:/rails_app/config/database.yml
+  - local_path/config/secrets.yml:/rails_app/config/secrets.yml
+  - local_pathlog:/rails_app/log
+  - local_path/public/uploads:/rails_app/public/uploads/
+  - local_path/config/config.yml:/rails_app/config/config.yml
   environment:
   - REDIS_HOST=redis
   - MYSQL_HOST=mysql
   - RUN_CONTEXT=prod
-  - VIRTUAL_HOST=www.rails360.com
+  - VIRTUAL_HOST=www.domain.com
   command: /bin/bash docker_web_run.sh
 redis:
   image: daocloud.io/daocloud/dao-redis:master-init
@@ -27,12 +27,12 @@ redis:
   - REDIS_APPENDONLY=yes
   - REDIS_APPENDFSYNC=everysec
   volumes:
-  - /home/docker/data/rails360/redis_data:/data
+  - local_path:/data
 mysql:
   image: daocloud.io/library/mysql
   restart: always
   environment:
-  - MYSQL_ROOT_PASSWORD=root
+  - MYSQL_ROOT_PASSWORD=password
   - MYSQL_DATABASE=rails_docker
   volumes:
-  - /home/docker/data/mysql:/var/lib/mysql
+  - local_path:/var/lib/mysql

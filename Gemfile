@@ -64,14 +64,9 @@ gem 'redis-objects'
 gem 'friendly_id', '~> 5.1.0'
 
 # Sidekiq 队列
-gem 'mina-sidekiq', :require => false
 gem 'sidekiq'
 # Sidekiq Web
 gem 'sinatra', require: nil
-
-# Use Unicorn as the app server
-gem 'mina-unicorn', :require => false
-gem 'unicorn'
 
 # OAuth 2.0
 gem 'doorkeeper', github: 'doorkeeper-gem/doorkeeper'
