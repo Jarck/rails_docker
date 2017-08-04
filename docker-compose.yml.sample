@@ -1,5 +1,5 @@
 web:
-  image: daocloud.io/jarck/rails_docker:latest
+  build: .
   restart: always
   links:
   - redis
@@ -20,7 +20,7 @@ web:
   - VIRTUAL_HOST=www.domain.com
   command: /bin/bash docker_web_run.sh
 redis:
-  image: daocloud.io/daocloud/dao-redis:master-init
+  image: daocloud.io/library/redis:latest
   restart: always
   environment:
   - REDIS_PASS=**None**
