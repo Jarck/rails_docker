@@ -1,0 +1,11 @@
+defaults: &defaults
+  host: <%= ENV['REDIS_HOST'] %>
+  port: 6379
+development:
+  <<: *defaults
+test:
+  <<: *defaults
+production:
+  <<: *defaults
+development_mongohq:
+  <<: *defaults
