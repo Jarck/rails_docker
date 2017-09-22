@@ -63,15 +63,15 @@ Rails.application.configure do
 
   # 发送邮箱配置
   config.action_mailer.smtp_settings = {
-    :address => Setting.email_address,
-    :port    => Setting.email_port,
-    :domain  => Setting.email_domain,
-    :user_name => Setting.email_sender,
-    :password  => Setting.email_password,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    address: Setting.email_address,
+    port: Setting.email_port,
+    domain: Setting.email_domain,
+    user_name: Setting.email_sender,
+    password: Setting.email_password,
+    authentication: :plain,
+    enable_starttls_auto: true
   }
-  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.default charset: 'utf-8'
 
   config.action_mailer.perform_deliveries = true
 end

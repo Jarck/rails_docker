@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe API::V1::Pictures, type: :request do
-
   describe 'GET /api/v1/pictures.json' do
-
     context 'without login user' do
       it 'is return status 200 OK' do
         get '/api/v1/pictures.json'
@@ -73,5 +71,4 @@ RSpec.describe API::V1::Pictures, type: :request do
       end
     end
   end
-
 end

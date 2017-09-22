@@ -1,8 +1,7 @@
 module ApplicationHelper
-
-  ALLOW_TAGS = %W(string em b i p code pre tt br div span h1 h2 h3 h4 h5 h6 u ul ol
-                  li dl dt dd abbr a img blockquote del table tr td tbody th strike hr)
-  ALLOW_ATTRIBUTES = %w(href src width height title class name abbr id alt target rel data-floor style)
+  ALLOW_TAGS = %w[string em b i p code pre tt br div span h1 h2 h3 h4 h5 h6 u ul ol
+                  li dl dt dd abbr a img blockquote del table tr td tbody th strike hr].freeze
+  ALLOW_ATTRIBUTES = %w[href src width height title class name abbr id alt target rel data-floor style].freeze
   EMPTY_STRING = ''.freeze
 
   def sanitize_markdown(body)
@@ -47,19 +46,19 @@ module ApplicationHelper
   # 显示距当前之前的时间
   def timeago(time, options = {})
     options[:class] = options[:class].blank? ? 'timeago' : [options[:class], 'timeago'].join(' ')
-    options.merge!(title: time.iso8601)
+    options[:title] = time.iso8601
     content_tag(:abbr, EMPTY_STRING, class: options[:class], title: time.iso8601) if time
   end
 
   # Markdown格式转HTML
   def markdown(text)
     options = {
-      :autolink => true,
-      :space_after_headers => true,
-      :fenced_code_blocks => true,
-      :no_intra_emphasis => true,
-      :hard_warp => true,
-      :strikethrough => true
+      autolink: true,
+      space_after_headers: true,
+      fenced_code_blocks: true,
+      no_intra_emphasis: true,
+      hard_warp: true,
+      strikethrough: true
     }
 
     markdown = Redcarpet::Markdown.new(HTMLwithCodeRay, options)
@@ -73,8 +72,7 @@ module ApplicationHelper
       # 当language未指定时，设置默认的
       language ||= :plaintext
 
-      CodeRay.scan(code, language).div(:tab_width => 2)
+      CodeRay.scan(code, language).div(tab_width: 2)
     end
   end
-
 end

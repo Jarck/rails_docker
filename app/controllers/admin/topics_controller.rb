@@ -4,12 +4,12 @@ class Admin::TopicsController < ApplicationController
   def index
     if current_user.has_role?(:admin)
       # 获取全部的文章
-      @topics = Topic.includes(:node).paginate(page: params[:page], :per_page => 10).order('created_at DESC')
+      @topics = Topic.includes(:node).paginate(page: params[:page], per_page: 10).order('created_at DESC')
     else
       # 仅获取当前用户的文章
       user_id = current_user.id
-      @topics = Topic.includes(:node).where("user_id in (:user_id)", user_id: user_id)
-                  .paginate(page: params[:page], :per_page => 10).order('created_at DESC')
+      @topics = Topic.includes(:node).where('user_id in (:user_id)', user_id: user_id)
+                     .paginate(page: params[:page], per_page: 10).order('created_at DESC')
     end
   end
 
@@ -62,5 +62,4 @@ class Admin::TopicsController < ApplicationController
   def topic_params
     params.require(:topic).permit(:title, :body, :node_id)
   end
-
 end

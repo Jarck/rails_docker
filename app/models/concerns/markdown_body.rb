@@ -12,9 +12,7 @@ module MarkdownBody
 
   # 将Markdown内容转换成HTML
   def markdown_body
-    if self.body_changed?
-      # 对转换后生成的html进行过滤
-      self.body_html = sanitize_markdown( markdown(body) )
-    end
+    # 对转换后生成的html进行过滤
+    self.body_html = sanitize_markdown(markdown(body)) if body_changed?
   end
 end

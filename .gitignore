@@ -4,9 +4,15 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+# Ignore all logfile and tempfiles
+/log/*
+/tmp/*
+
 config/config.yml
 config/database.yml
 config/secrets.yml
 config/redis.yml
+
+public/uploads/*
 
 docker-compose.yml

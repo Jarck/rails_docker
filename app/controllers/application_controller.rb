@@ -17,19 +17,18 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    added_attrs = [:name, :email, :password, :password_confirmation, :remember_me]
+    added_attrs = %i[name email password password_confirmation remember_me]
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
     devise_parameter_sanitizer.permit(:sign_in, keys: added_attrs)
   end
 
   private
 
-    def user_locale
-      params[:locale] || cookies[:locale] || http_head_locale || I18n.default_locale
-    end
+  def user_locale
+    params[:locale] || cookies[:locale] || http_head_locale || I18n.default_locale
+  end
 
-    def http_head_locale
-      http_accept_language.language_region_compatible_from(I18n.available_locales)
-    end
-
+  def http_head_locale
+    http_accept_language.language_region_compatible_from(I18n.available_locales)
+  end
 end

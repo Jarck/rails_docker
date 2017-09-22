@@ -4,12 +4,12 @@ class Admin::PicturesController < ApplicationController
   def index
     if current_user.has_role?(:admin)
       # 获取全部的图片
-      @pictures = Picture.paginate(page: params[:page], :per_page => 10).order('created_at DESC')
+      @pictures = Picture.paginate(page: params[:page], per_page: 10).order('created_at DESC')
     else
       # 仅获取当前用户的文章
       user_id = current_user.id
-      @topics = Picture.includes(:node).where("user_id in (:user_id)", user_id: user_id)
-                  .paginate(page: params[:page], :per_page => 10).order('created_at DESC')
+      @topics = Picture.includes(:node).where('user_id in (:user_id)', user_id: user_id)
+                       .paginate(page: params[:page], per_page: 10).order('created_at DESC')
     end
   end
 
@@ -50,7 +50,6 @@ class Admin::PicturesController < ApplicationController
   private
 
   def picture_params
-    params.require(:picture).permit( {image: []} )
+    params.require(:picture).permit(image: [])
   end
-
 end

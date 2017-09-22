@@ -32,5 +32,4 @@ RSpec.describe API::V1::Root, type: :request do
       end
     end
   end
-
 end

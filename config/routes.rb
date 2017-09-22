@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-
   use_doorkeeper do
-    controllers :applications => 'oauth/applications'
+    controllers applications: 'oauth/applications'
   end
 
   devise_for :users, controllers: {
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
 
   # sidekiq管理界面
   require 'sidekiq/web'
-  authenticate :user, ->(u) { u.has_role? :admin} do
+  authenticate :user, ->(u) { u.has_role? :admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
@@ -28,13 +27,13 @@ Rails.application.routes.draw do
   end
 
   # 文章
-  resources :topics, only: [:index, :show]
+  resources :topics, only: %i[index show]
 
   resources :nodes, only: [:show]
 
   get 'notice' => 'notice#index'
 
-  root to: "home#index"
+  root to: 'home#index'
 
   # API
   mount ApplicationAPI => '/api'

@@ -8,8 +8,8 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins '*'
-    resource '/api/*', headers: :any, methods: [:get, :post, :put, :delete, :destroy]
-    resource '/oauth/*', headers: :any, methods: [:get, :post, :put, :delete, :destroy]
+    resource '/api/*', headers: :any, methods: %i[get post put delete destroy]
+    resource '/oauth/*', headers: :any, methods: %i[get post put delete destroy]
   end
 end
 

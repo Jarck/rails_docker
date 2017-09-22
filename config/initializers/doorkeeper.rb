@@ -120,8 +120,7 @@ Doorkeeper.configure do
 
   # WWW-Authenticate Realm (default "Doorkeeper").
   # realm "Doorkeeper"
-  realm "Rails 360"
+  realm 'Rails 360'
 end
 
 Doorkeeper.configuration.token_grant_types << 'password'
-

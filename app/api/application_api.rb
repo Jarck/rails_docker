@@ -12,5 +12,4 @@ class ApplicationAPI < Grape::API
     status 404
     { error: 'Page not found.' }
   end
-
 end

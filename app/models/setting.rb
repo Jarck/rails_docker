@@ -5,7 +5,7 @@ class Setting < Settingslogic
 
   class << self
     def protocol
-      self.https == true ? 'https' : 'http'
+      https == true ? 'https' : 'http'
     end
   end
 end

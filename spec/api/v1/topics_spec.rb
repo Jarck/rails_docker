@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe API::V1::Topics, type: :request do
-
   let(:user) { FactoryGirl.create(:user) }
   let(:node) { FactoryGirl.create(:node) }
   let(:node_private) { FactoryGirl.create(:private) }
@@ -20,7 +19,7 @@ RSpec.describe API::V1::Topics, type: :request do
       it 'return topics without private node' do
         get '/api/v1/topics.json'
 
-        topics = [topic, topic_private]
+        # topics = [topic, topic_private]
 
         expect(response.status).to eq(200)
         expect(json.size).to eq(1)
@@ -66,7 +65,7 @@ RSpec.describe API::V1::Topics, type: :request do
       end
 
       it 'with wrong limit' do
-        get '/api/v1/topics.json', node_id: node.id, offset: 1, limit: 10000
+        get '/api/v1/topics.json', node_id: node.id, offset: 1, limit: 10_000
 
         expect(response.status).to eq(400)
       end
@@ -185,5 +184,4 @@ RSpec.describe API::V1::Topics, type: :request do
       end
     end
   end
-
 end

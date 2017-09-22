@@ -1,8 +1,6 @@
 module API
   module V1
-
     module Helpers
-
       def render(result, options = {})
         if result.is_a?(ActiveRecord::Relation)
           super(result.to_a, options)
@@ -33,11 +31,8 @@ module API
         return false if obj.blank?
         return true if admin?
 
-        if obj.is_a?(User)
-          return obj.id == current_user.id
-        else
-          return obj.user_id == current_user.id
-        end
+        return obj.id == current_user.id if obj.is_a?(User)
+        obj.user_id == current_user.id
       end
 
       def admin?
@@ -61,8 +56,6 @@ module API
       def decorated_request
         Doorkeeper::Grape::AuthorizationDecorator.new(request)
       end
-
     end
-
   end
 end

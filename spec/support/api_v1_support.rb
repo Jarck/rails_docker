@@ -24,7 +24,7 @@ module APIV1Support
     end
 
     # 覆盖 get, post .. 方法，使其带上token信息
-    [:get, :post, :put, :delete, :head].each do |method|
+    %i[get post put delete head].each do |method|
       class_eval <<-EOV
       def #{method}(path, parameters = nil, headers = nil)
         # override empty params and headers with default

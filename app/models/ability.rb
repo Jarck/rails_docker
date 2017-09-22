@@ -54,5 +54,4 @@ class Ability
   def basic_read_only
     can :read, Topic
   end
-
 end

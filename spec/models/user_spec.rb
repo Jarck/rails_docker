@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   describe 'roles' do
-
     context 'when with new user' do
       it 'has role with member' do
         user = FactoryGirl.build(:user)
@@ -23,7 +21,6 @@ RSpec.describe User, type: :model do
         expect(user).to have_role(:admin)
       end
     end
-
   end
 
   describe 'login both with name, email' do
@@ -41,5 +38,4 @@ RSpec.describe User, type: :model do
       expect(User.find_for_database_authentication(login: 'not found')).to eq nil
     end
   end
-
 end

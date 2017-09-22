@@ -11,5 +11,4 @@ class Picture < ApplicationRecord
   # def delete_picture_file
   #   FileUtils.remove_dir("#{Rails.root}/public/uploads/#{self.id}", :force => true) if self.image
   # end
-
 end

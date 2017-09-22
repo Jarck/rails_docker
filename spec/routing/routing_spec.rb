@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'routing', type: :routing do
-
   describe 'routing' do
     it 'routes to root' do
       expect(get('/')).to route_to('home#index')
@@ -43,5 +42,4 @@ RSpec.describe 'routing', type: :routing do
       expect(delete('/admin/topics/1')).to route_to('admin/topics#destroy', id: '1')
     end
   end
-
 end

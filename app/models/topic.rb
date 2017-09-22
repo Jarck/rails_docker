@@ -1,5 +1,4 @@
 class Topic < ApplicationRecord
-
   include Redis::Objects
   include MarkdownBody
   include SoftDelete
@@ -19,5 +18,4 @@ class Topic < ApplicationRecord
   def init_last_active_mark_on_create
     self.last_active_mark = Time.now.to_i
   end
-
 end

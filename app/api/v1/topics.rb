@@ -1,12 +1,10 @@
 module API
   module V1
-
     # 文章
     class Topics < Grape::API
       format :json
 
       resources :topics do
-
         desc '获取文章列表'
         params do
           optional :node_id, type: Integer, desc: '如果只看某一分类的文章，请传入该参数'
@@ -41,7 +39,7 @@ module API
           if @topic.save
             render @topic
           else
-            error!( {result: false, error: @topic.errors.full_messages}, 400 )
+            error!({ result: false, error: @topic.errors.full_messages }, 400)
           end
         end
 
@@ -64,17 +62,17 @@ module API
             if @topic.save
               render @topic
             else
-              error!( {result: false, error: @topic.errors.full_messages}, 400 )
+              error!({ result: false, error: @topic.errors.full_messages }, 400)
             end
           end
 
           desc '获取文章'
           get '', serializer: TopicDetailSerializer, root: 'topic' do
-            if current_user
-              @topic = Topic.find(params[:id])
-            else
-              @topic = Topic.without_private.find(params[:id])
-            end
+            @topic = if current_user
+                       Topic.find(params[:id])
+                     else
+                       Topic.without_private.find(params[:id])
+                     end
             @topic.hits.incr(1)
 
             render @topic
@@ -90,9 +88,7 @@ module API
             { result: true, message: '删除成功！' }
           end
         end
-
       end  # resources end
     end    # class end
-
   end      # module v1 end
 end        # module API end

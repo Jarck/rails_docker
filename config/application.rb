@@ -16,7 +16,7 @@ module RailsDocker
     config.i18n.available_locales = ['zh-CN', 'en']
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password, :token]
+    config.filter_parameters += %i[password token]
 
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
@@ -27,6 +27,5 @@ module RailsDocker
       g.test_framework :rspec
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
-
   end
 end

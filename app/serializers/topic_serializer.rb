@@ -13,5 +13,4 @@ class TopicSerializer < BaseSerializer
   def deleted
     !object.deleted_at.nil?
   end
-
 end

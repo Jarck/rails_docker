@@ -17,6 +17,5 @@ FactoryGirl.define do
     factory :invalid_html_body do
       body '<script>alert("test");</script>'
     end
-
   end
 end

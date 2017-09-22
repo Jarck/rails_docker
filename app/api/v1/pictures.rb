@@ -1,12 +1,10 @@
 module API
   module V1
-
     # 图片
     class Pictures < Grape::API
       format :json
 
       resources :pictures do
-
         desc '获取上传图片列表'
         params do
           optional :offset, type: Integer, default: 0
@@ -27,12 +25,12 @@ module API
           doorkeeper_authorize!
           error!('没有权限上传图片！', 403) unless can?(:create, Picture)
           @picture = current_user.pictures.new
-          @picture.image = [ params[:image] ]
+          @picture.image = [params[:image]]
 
           if @picture.save
             render @picture
           else
-            error!( {result: false, error: @picture.errors.full_messages}, 400 )
+            error!({ result: false, error: @picture.errors.full_messages }, 400)
           end
         end
 
@@ -45,12 +43,10 @@ module API
           if @picture.destroy
             { result: true, message: '删除成功！' }
           else
-            error!( {result: false, error: @picture.errors.full_messages}, 400 )
+            error!({ result: false, error: @picture.errors.full_messages }, 400)
           end
         end
-
       end  # resources end
     end    # class end
-
   end      # module V1 end
 end        # module API end

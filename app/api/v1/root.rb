@@ -3,7 +3,6 @@ require 'doorkeeper/grape/helpers'
 
 module API
   module V1
-
     class Root < Grape::API
       version 'v1'
 
@@ -16,7 +15,7 @@ module API
       rescue_from :all do |e|
         case e
         when ActiveRecord::RecordNotFound
-          Rack::Response.new([{result: false, error: '数据不存在'}.to_json], 404, {}).finish
+          Rack::Response.new([{ result: false, error: '数据不存在' }.to_json], 404, {}).finish
         when Grape::Exceptions::ValidationErrors
           Rack::Response.new([{
             result: false,
@@ -29,7 +28,7 @@ module API
           else
             Rails.logger.error("API V1 Error: #{e}\n#{e.backtrace[0..3].join("\n")}")
           end
-          Rack::Response.new([{result: false, error: 'API接口异常'}.to_json], 500, {}).finish
+          Rack::Response.new([{ result: false, error: 'API接口异常' }.to_json], 500, {}).finish
         end
       end
 
@@ -53,8 +52,6 @@ module API
       # API文档
       add_swagger_documentation \
         doc_version: 'v1'
-
     end    # class end
-
   end      # module v1 end
 end        # module API end
