@@ -54,6 +54,7 @@ Naming/HeredocDelimiterNaming:
 # SupportedStyles: nested, compact
 Style/ClassAndModuleChildren:
   Exclude:
+    - 'app/controllers/admin/nodes_controller.rb'
     - 'app/controllers/admin/pictures_controller.rb'
     - 'app/controllers/admin/topics_controller.rb'
     - 'app/controllers/users/confirmations_controller.rb'

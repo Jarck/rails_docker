@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="topics panel panel-default">
+        <div class="panel-body">
+          <% if @nodes.blank? %>
+            <p>
+              <span><%= I18n.t("common.empty_nodes") %></span>
+            </p>
+          <% else %>
+            <% cache(['nodes', @nodes]) do %>
+              <%= render @nodes %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <%= will_paginate @nodes %>
+    </div>
+  </div>
+</div>

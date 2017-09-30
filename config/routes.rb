@@ -24,6 +24,9 @@ Rails.application.routes.draw do
 
     # 图片
     resources :pictures
+
+    # 分类
+    resources :nodes
   end
 
   # 文章

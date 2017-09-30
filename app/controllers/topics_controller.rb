@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   def index
     # 只获取所有可见的文章信息
-    node_ids = Node.where(publish: true).pluck(:id)
+    node_ids = Node.visible.pluck(:id)
 
     @topics = Topic.includes(:node)
                    .where('node_id in (:node_ids)', node_ids: node_ids)

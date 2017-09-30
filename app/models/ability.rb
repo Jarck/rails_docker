@@ -10,16 +10,10 @@ class Ability
       can :manage, :all
     elsif user.has_role?(:member)
       # 文章
-      can :create, Topic
-      can :manage, Topic do |topic|
-        topic.user_id == user.id
-      end
+      can :manage, Topic, user_id: user.id
 
       # 图片
-      can :create, Picture
-      can :manage, Picture do |picture|
-        picture.user_id == user.id
-      end
+      can :manage, Picture, user_id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #

@@ -1,0 +1,29 @@
+<%= simple_form_for [:admin, @node], html: { class: "form form-horizontal" } do |f| %>
+<%= render "common/error_messages", target: @node %>
+<div class="form-group">
+  <%= f.label '分类英文：', class: "col-sm-2 control-label" %>
+  <div class="col-md-4">
+    <%= f.text_field :name, class: "form-control node_name", placeholder: "在这里填写分类英文" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label '分类中文：', class: "col-sm-2 control-label" %>
+  <div class="col-md-4">
+    <%= f.text_field :title, class: "form-control node_title", placeholder: "在这里填写分类名称" %>
+  </div>
+</div>
+
+<div class="form-group">
+    <%= f.label '是否可见：', class: "col-sm-2 control-label" %>
+  <div class="col-md-4">
+    <%= f.select :publish, options_for_select(publish_select, Node.publishes[:visible]), {}, {class: "form-control select_node"} %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-offset-5 col-md-4">
+    <%= f.submit t("common.save"), class: "btn btn-primary col-xs-2", 'data-disable-with' => t("common.saving") %>
+  </div>
+</div>
+<% end %>

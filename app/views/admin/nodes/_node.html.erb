@@ -1,0 +1,24 @@
+<div class="border_bottom media node-<%= node.id %>">
+  <div class="infos media-body">
+    <div class="title media-heading">
+      <div class="row">
+        <div class="col-md-10">
+          <p>
+            <span class="node"><%= node.title %></span>
+            <%= link_to(truncate(node.title, length: 100), admin_node_path(node), title: node.title, :target=> "_blank") %>
+          </p>
+        </div>
+        <div class="col-md-2">
+          <div>
+          <% if can? :update, node %>
+            <%= link_to(I18n.t("common.edit"), edit_admin_node_path(node), :target=>"_blank", class: "btn btn-sm btn-default") %>
+          <% end %>
+          <% if can? :destroy, node %>
+            <%= link_to I18n.t("common.delete"), admin_node_path(node), method: 'DELETE', data: {confirm: I18n.t("common.confirm")}, class: "btn btn-sm btn-danger" %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
