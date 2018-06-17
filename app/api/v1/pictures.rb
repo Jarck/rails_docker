@@ -46,7 +46,7 @@ module API
             error!({ result: false, error: @picture.errors.full_messages }, 400)
           end
         end
-      end  # resources end
-    end    # class end
-  end      # module V1 end
-end        # module API end
+      end
+    end
+  end
+end

@@ -37,9 +37,9 @@ RSpec.describe API::V1::Pictures, type: :request do
   end
 
   describe 'DELETE /api/v1/pictures/:id.json' do
-    let(:user) { FactoryGirl.create(:user) }
-    let!(:picture) { FactoryGirl.create(:picture, image: [Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'factories', 'jarck.png'), 'image/png')], user: user) }
-    let!(:picture_cur) { FactoryGirl.create(:picture, image: [Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'factories', 'jarck.png'), 'image/png')], user: current_user) }
+    let(:user) { FactoryBot.create(:user) }
+    let!(:picture) { FactoryBot.create(:picture, image: [Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'factories', 'jarck.png'), 'image/png')], user: user) }
+    let!(:picture_cur) { FactoryBot.create(:picture, image: [Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'factories', 'jarck.png'), 'image/png')], user: current_user) }
 
     it 'without login user' do
       delete "/api/v1/pictures/#{picture.id}.json"

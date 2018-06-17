@@ -47,7 +47,7 @@ module API
       private
 
       def doorkeeper_token
-        @_doorkeeper_token ||= Doorkeeper::OAuth::Token.authenticate(
+        @doorkeeper_token ||= Doorkeeper::OAuth::Token.authenticate(
           decorated_request,
           *Doorkeeper.configuration.access_token_methods
         )

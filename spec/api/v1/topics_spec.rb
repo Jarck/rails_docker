@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe API::V1::Topics, type: :request do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:node) { FactoryGirl.create(:node) }
-  let(:node_private) { FactoryGirl.create(:private) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:node) { FactoryBot.create(:node) }
+  let(:node_private) { FactoryBot.create(:private) }
 
   describe 'GET /api/v1/topics.json' do
-    let!(:topic) { FactoryGirl.create(:topic, user: user, node: node) }
-    let!(:topic_private) { FactoryGirl.create(:topic, user: user, node: node_private) }
+    let!(:topic) { FactoryBot.create(:topic, user: user, node: node) }
+    let!(:topic_private) { FactoryBot.create(:topic, user: user, node: node_private) }
 
     context 'without login user' do
       it 'is return status 200 OK' do
@@ -38,10 +38,10 @@ RSpec.describe API::V1::Topics, type: :request do
   end
 
   describe 'GET /api/v1/topics.json with node id' do
-    let!(:topic1) { FactoryGirl.create(:topic, user: user, node: node) }
-    let!(:topic2) { FactoryGirl.create(:topic, user: user, node: node) }
-    let!(:topic3) { FactoryGirl.create(:topic, user: user, node: node) }
-    let!(:topic_private) { FactoryGirl.create(:topic, user: user, node: node_private) }
+    let!(:topic1) { FactoryBot.create(:topic, user: user, node: node) }
+    let!(:topic2) { FactoryBot.create(:topic, user: user, node: node) }
+    let!(:topic3) { FactoryBot.create(:topic, user: user, node: node) }
+    let!(:topic_private) { FactoryBot.create(:topic, user: user, node: node_private) }
 
     context 'is return a list of topics belong to the appoint node' do
       it 'with wrong node_id' do
@@ -90,8 +90,8 @@ RSpec.describe API::V1::Topics, type: :request do
   end
 
   describe 'POST /api/v1/topics/:id.json' do
-    let!(:topic) { FactoryGirl.create(:topic, user: user, node: node) }
-    let!(:topic_cur) { FactoryGirl.create(:topic, user: current_user, node: node) }
+    let!(:topic) { FactoryBot.create(:topic, user: user, node: node) }
+    let!(:topic_cur) { FactoryBot.create(:topic, user: current_user, node: node) }
 
     it 'without login user' do
       post "/api/v1/topics/#{topic.id}.json", title: 'title update', body: 'body update', node_id: node.id
@@ -128,7 +128,7 @@ RSpec.describe API::V1::Topics, type: :request do
   end
 
   describe 'GET /api/v1/topics/:id.json' do
-    let!(:topic) { FactoryGirl.create(:topic, user: user, node: node) }
+    let!(:topic) { FactoryBot.create(:topic, user: user, node: node) }
 
     it 'hits count plus 1' do
       last_hits = topic.hits.to_i
@@ -140,8 +140,8 @@ RSpec.describe API::V1::Topics, type: :request do
   end
 
   describe 'DELETE /api/v1/topics/:id.json' do
-    let!(:topic) { FactoryGirl.create(:topic, user: user, node: node) }
-    let!(:topic_cur) { FactoryGirl.create(:topic, user: current_user, node: node) }
+    let!(:topic) { FactoryBot.create(:topic, user: user, node: node) }
+    let!(:topic_cur) { FactoryBot.create(:topic, user: current_user, node: node) }
 
     it 'without login user' do
       delete "/api/v1/topics/#{topic.id}.json"

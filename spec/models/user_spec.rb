@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   describe 'roles' do
     context 'when with new user' do
       it 'has role with member' do
-        user = FactoryGirl.build(:user)
+        user = FactoryBot.build(:user)
         user.save
 
         expect(user).to have_role(:member)
@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
 
     context 'assign role as admin' do
       it 'assign role with admin' do
-        user = FactoryGirl.build(:user)
+        user = FactoryBot.build(:user)
         user.save
 
         user.add_role(:admin)
@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'login both with name, email' do
-    let!(:user) { FactoryGirl.create(:user, name: 'test', email: 'test@test.com') }
+    let!(:user) { FactoryBot.create(:user, name: 'test', email: 'test@test.com') }
 
     it 'login with user name' do
       expect(User.find_for_database_authentication(login: 'test').id).to eq user.id

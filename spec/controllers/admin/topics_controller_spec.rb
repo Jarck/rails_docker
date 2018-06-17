@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Admin::TopicsController, type: :controller do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:node) { FactoryGirl.create(:node) }
-  let(:topic) { FactoryGirl.create(:topic, user: user, node: node) }
+  let!(:member) { FactoryBot.create(:member) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:node) { FactoryBot.create(:node) }
+  let(:topic) { FactoryBot.create(:topic, user: user, node: node) }
 
   describe 'GET #index' do
     context 'unsign in' do
@@ -17,7 +18,7 @@ RSpec.describe Admin::TopicsController, type: :controller do
         sign_in user
         get :index
 
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response).to have_http_status(200)
         expect(response).to render_template('index')
       end
@@ -36,7 +37,7 @@ RSpec.describe Admin::TopicsController, type: :controller do
         sign_in user
         get :new
 
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
@@ -53,7 +54,7 @@ RSpec.describe Admin::TopicsController, type: :controller do
         sign_in user
         get :edit, params: { id: topic.id }
 
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
@@ -70,13 +71,13 @@ RSpec.describe Admin::TopicsController, type: :controller do
         sign_in user
         get :show, params: { id: topic.id }
 
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
 
   describe 'PATCH #update' do
-    let(:valid_topic_attribute) { FactoryGirl.attributes_for(:topic, title: 'test update') }
+    let(:valid_topic_attribute) { FactoryBot.attributes_for(:topic, title: 'test update') }
 
     context 'unsign in' do
       it 'is not allow to update with unsign in' do
@@ -97,7 +98,7 @@ RSpec.describe Admin::TopicsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:valid_topic_attribute) { FactoryGirl.attributes_for(:topic, user_id: user, node_id: node) }
+    let(:valid_topic_attribute) { FactoryBot.attributes_for(:topic, user_id: user, node_id: node) }
 
     context 'unsign in' do
       it 'is not allow to create with unsign in' do

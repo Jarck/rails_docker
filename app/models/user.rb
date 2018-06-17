@@ -7,7 +7,6 @@ class User < ApplicationRecord
   # :confirmable
   # :encryptable
 
-  has_many :roles, through: :users_roles
   has_many :topics
   has_many :pictures
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner

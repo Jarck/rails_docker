@@ -88,7 +88,7 @@ module API
             { result: true, message: '删除成功！' }
           end
         end
-      end  # resources end
-    end    # class end
-  end      # module v1 end
-end        # module API end
+      end
+    end
+  end
+end

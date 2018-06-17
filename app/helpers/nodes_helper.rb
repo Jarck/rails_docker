@@ -1,8 +1,8 @@
 module NodesHelper
   def publish_select
     publish = []
-    publish << ['不可见', 0]
-    publish << ['可见', 1]
+    publish << %w[不可见 invisible]
+    publish << %w[可见 visible]
     publish
   end
 end

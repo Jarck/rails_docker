@@ -1,12 +1,14 @@
 # source 'https://rubygems.org'
 source 'http://gems.ruby-china.org'
 
+ruby '2.5.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.2.0'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -29,6 +31,9 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
 # 用户管理
 gem 'cancancan'
@@ -63,13 +68,16 @@ gem 'redis-objects'
 # friendly id
 gem 'friendly_id', '~> 5.1.0'
 
+# migration注释
+gem 'migration_comments'
+
 # Sidekiq 队列
 gem 'sidekiq'
 # Sidekiq Web
 gem 'sinatra', require: nil
 
 # OAuth 2.0
-gem 'doorkeeper', github: 'doorkeeper-gem/doorkeeper'
+gem 'doorkeeper'
 gem 'doorkeeper-i18n'
 
 # API
@@ -87,20 +95,20 @@ gem 'rack-utf8_sanitizer'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec-collection_matchers'
   gem 'rspec-rails', '~> 3.5.2'
 
   gem 'pry'
   gem 'pry-nav'
-  gem 'rubocop', '~> 0.50.0', require: false
+  gem 'rubocop', '~> 0.57.2', require: false
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', '>= 2.15', '< 4.0'
   gem 'faker'
   gem 'launchy'
   gem 'selenium-webdriver'
@@ -110,7 +118,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'listen', '~> 3.0.5'
+  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

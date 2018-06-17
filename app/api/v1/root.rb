@@ -52,6 +52,6 @@ module API
       # API文档
       add_swagger_documentation \
         doc_version: 'v1'
-    end    # class end
-  end      # module v1 end
-end        # module API end
+    end
+  end
+end

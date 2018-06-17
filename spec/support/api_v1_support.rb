@@ -2,8 +2,8 @@ module APIV1Support
   extend ActiveSupport::Concern
 
   included do
-    let!(:current_user) { FactoryGirl.create(:user) }
-    let!(:access_token) { FactoryGirl.create(:access_token, resource_owner_id: current_user.id) }
+    let!(:current_user) { FactoryBot.create(:user) }
+    let!(:access_token) { FactoryBot.create(:access_token, resource_owner_id: current_user.id) }
     let(:json) { JSON.parse(response.body) }
 
     def login_user!
