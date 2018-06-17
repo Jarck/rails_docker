@@ -4,8 +4,8 @@
 
 ### 依赖
 
-* Rails 5.0
-* Ruby 2.4
+* Rails 5.2
+* Ruby 2.5
 * MySQL 5.7
 * Redis
 * ImageMagick 
