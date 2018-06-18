@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2018_06_17_084847) do
     t.datetime "created_at", null: false
     t.datetime "revoked_at"
     t.string "scopes"
-    t.index ["application_id"], name: "fk_rails_b4b53e07b8"
+    t.index ["application_id"], name: "index_oauth_access_grants_on_application_id"
     t.index ["resource_owner_id"], name: "fk_rails_330c32d8d9"
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2018_06_17_084847) do
     t.datetime "created_at", null: false
     t.string "scopes"
     t.string "previous_refresh_token", default: "", null: false
-    t.index ["application_id"], name: "fk_rails_732cb83ab7"
+    t.index ["application_id"], name: "index_oauth_access_tokens_on_application_id"
     t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
     t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
@@ -78,10 +78,11 @@ ActiveRecord::Schema.define(version: 2018_06_17_084847) do
     t.string "name"
     t.string "resource_type"
     t.integer "resource_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "topics", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -127,9 +128,11 @@ ActiveRecord::Schema.define(version: 2018_06_17_084847) do
   create_table "users_roles", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
-    t.datetime "created_at", default: "2018-06-17 08:52:24", null: false
-    t.datetime "updated_at", default: "2018-06-17 08:52:24", null: false
+    t.datetime "created_at", default: "2018-06-18 09:57:33", null: false
+    t.datetime "updated_at", default: "2018-06-18 09:57:33", null: false
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
